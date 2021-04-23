@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-Task 4.4
+Task 4.5
 
-Vlans list is a list of VLANs collected from all devices on the network,
-therefore there are duplicate VLAN numbers in the list.
+From the strings command1 and command2, get a list of VLANs that exist
+in both command1 and command2 (intersection).
 
-Get a new list of unique VLAN numbers from the vlans list,
-sorted in ascending order of numbers. To get the final
-list, you cannot delete specific vlans manually.
+In this case, the result should be a list: ['1', '3', '8']
 
 Write the resulting list to the result variable.
 (this is the variable that will be checked in the test)
@@ -22,7 +20,11 @@ This does not mean that the task was done correctly, it is just that at
 this stage it is difficult otherwise test the result.
 """
 
-vlans = [10, 20, 30, 1, 2, 100, 10, 30, 3, 4, 10]
-vlans_dict = list(dict.fromkeys(vlans))
-result = sorted(vlans_dict)
-print (result)
+command1 = "switchport trunk allowed vlan 1,2,3,5,8"
+command2 = "switchport trunk allowed vlan 1,3,8,9"
+
+vlans1 = command1.split()[-1].split(",")
+vlans2 = command2.split()[-1].split(",")
+
+result = sorted(set(vlans1) & set(vlans2))
+print(result)

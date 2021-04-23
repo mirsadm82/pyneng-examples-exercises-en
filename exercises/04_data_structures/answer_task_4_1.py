@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Task 4.2
+Task 4.1
 
-Convert string in mac variable from XXXX:XXXX:XXXX format to
-XXXX.XXXX.XXXX format.
+Using the prepared nat string, get a new string where the FastEthernet
+interface is replaced with GigabitEthernet.
 Print the resulting new string to the standard output (stdout) using print.
 
 Restriction: All tasks must be done using the topics covered in this and previous chapters.
@@ -14,6 +14,7 @@ This does not mean that the task was done correctly, it is just that at
 this stage it is difficult otherwise test the result.
 """
 
-mac = "AAAA:BBBB:CCCC"
-new_mac = mac.replace(':', '.')
-print (new_mac)
+nat = "ip nat inside source list ACL interface FastEthernet0/1 overload"
+
+nat_gig = nat.replace("Fast", "Gigabit")
+print(nat_gig)
