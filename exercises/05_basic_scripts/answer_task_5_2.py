@@ -26,24 +26,25 @@ You can then take 8 bits of the binary mask using slices and convert them to dec
 Restriction: All tasks must be done using the topics covered in this and previous chapters.
 """
 
-net = input("Enter the IP network in the format e.g. 10.1.1.0/24: ")
-ip, mask = net.split("/")
+network = input("Введите адрес сети: ")
+
+ip, mask = network.split("/")
 ip_list = ip.split(".")
 mask = int(mask)
 
 oct1, oct2, oct3, oct4 = [
-	int(ip_list[0]),
-	int(ip_list[1]),
-	int(ip_list[2]),
-	int(ip_list[3]),
+    int(ip_list[0]),
+    int(ip_list[1]),
+    int(ip_list[2]),
+    int(ip_list[3]),
 ]
 
 bin_mask = "1" * mask + "0" * (32 - mask)
 m1, m2, m3, m4 = [
-	int(bin_mask[0:8], 2),
-	int(bin_mask[8:16], 2),
-	int(bin_mask[16:24], 2),
-	int(bin_mask[24:32], 2),
+    int(bin_mask[0:8], 2),
+    int(bin_mask[8:16], 2),
+    int(bin_mask[16:24], 2),
+    int(bin_mask[24:32], 2),
 ]
 
 ip_output = """

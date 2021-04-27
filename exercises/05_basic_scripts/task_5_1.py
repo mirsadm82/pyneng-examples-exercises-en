@@ -18,6 +18,7 @@ Restriction: You cannot modify the london_co dictionary.
 All tasks must be completed using only the topics covered. That is, this task can be
 solved without using the if condition.
 """
+device = input('Enter name of device:')
 
 london_co = {
     "r1": {
@@ -44,3 +45,5 @@ london_co = {
         "routing": True,
     },
 }
+
+print (london_co[device])

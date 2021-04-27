@@ -1,23 +1,17 @@
 # -*- coding: utf-8 -*-
 """
-Task 5.1b
+Task 5.1
 
-Modify the script from task 5.1a so that, when requesting a parameter,
-a list of possible parameters was displayed. The list of parameters must be obtained
-from the dictionary, rather than written manually.
+The task contains a dictionary with information about different devices.
 
-Display information about the corresponding parameter of the specified device.
+In the task you need: ask the user to enter the device name (r1, r2 or sw1).
+Print information about the corresponding device to standard output
+(information will be in the form of a dictionary).
 
 An example of script execution:
-$ python task_5_1b.py
+$ python task_5_1.py
 Enter device name: r1
-Enter parameter name (location, vendor, model, ios, ip): ip
-10.255.0.1
-
-$ python task_5_1b.py
-Enter device name: sw1
-Enter parameter name (location, vendor, model, ios, ip, vlans, routing): ip
-10.255.0.101
+{'location': '21 New Globe Walk', 'vendor': 'Cisco', 'model': '4451', 'ios': '15.4', 'ip': '10.255.0.1'}
 
 Restriction: You cannot modify the london_co dictionary.
 
@@ -51,8 +45,6 @@ london_co = {
     },
 }
 
-device = input("Enter device name:")
-params = ','.join(london_co[device].keys())
-parameter = input(f"Enter parameter name ({params}): ")
+device = input("Enter device name: ")
 
-print(london_co[device][parameter])
+print(london_co[device])

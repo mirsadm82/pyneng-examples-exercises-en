@@ -1,23 +1,20 @@
 # -*- coding: utf-8 -*-
 """
-Task 5.1b
+Task 5.1c
 
-Modify the script from task 5.1a so that, when requesting a parameter,
-a list of possible parameters was displayed. The list of parameters must be obtained
-from the dictionary, rather than written manually.
+Copy and modify the script from task 5.1b so that when you request a parameter
+that is not in the device dictionary, the message 'There is no such parameter' is displayed.
+The assignment applies only to the parameters of the devices, not to the devices themselves.
 
-Display information about the corresponding parameter of the specified device.
+> Try typing a non-existent parameter, to see what the result will be. And then complete the task.
+
+If an existing parameter is selected, print information about the corresponding parameter.
 
 An example of script execution:
-$ python task_5_1b.py
+$ python task_5_1c.py
 Enter device name: r1
-Enter parameter name (location, vendor, model, ios, ip): ip
-10.255.0.1
-
-$ python task_5_1b.py
-Enter device name: sw1
-Enter parameter name (location, vendor, model, ios, ip, vlans, routing): ip
-10.255.0.101
+Enter parameter name (ios, model, vendor, location, ip): ips
+There is no such parameter
 
 Restriction: You cannot modify the london_co dictionary.
 
@@ -51,8 +48,8 @@ london_co = {
     },
 }
 
-device = input("Enter device name:")
-params = ','.join(london_co[device].keys())
+device = input("Enter device name: ")
+params = ", ".join(london_co[device].keys())
 parameter = input(f"Enter parameter name ({params}): ")
 
-print(london_co[device][parameter])
+print(london_co[device].get(parameter, "There is no such parameter"))
