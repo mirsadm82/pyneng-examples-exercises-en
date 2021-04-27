@@ -13,18 +13,16 @@ Depending on the type of address (described below), print to the stdout:
 Restriction: All tasks must be done using the topics covered in this and previous chapters.
 """
 
-ip = input('Enter an IP address: ')
+ip_address = input("Enter IP address: ")
+oct1 = int(ip_address.split(".")[0])
 
-octet = ip.split('.')
-#print(octet[0])
-
-if 1 <= int(octet[0]) <= 223:
-	print('unicast')
-elif 224 <= int(octet[0]) <= 239:
-	print('multicast')
-elif ip == '255.255.255.255':
-	print('local broadcast')
-elif ip == '0.0.0.0':
-	print('unassigned')
+if ip_address == "255.255.255.255":
+    print("local broadcast")
+elif ip_address == "0.0.0.0":
+    print("unassigned")
+elif 1 <= oct1 <= 223:
+    print("unicast")
+elif 224 <= oct1 <= 239:
+    print("multicast")
 else:
-	 print('unused')  
+    print("unused")
