@@ -17,3 +17,14 @@ Enter VLAN number: 10
 Restriction: All tasks must be done using the topics covered in this and previous chapters.
 
 """
+
+user_vlan = input('Enter VLAN number: ')
+
+with open('CAM_table.txt', 'r') as f:
+	for line in f:
+		words = line.split()
+		if words and words[0].isdigit() and words[0] == user_vlan:
+			vlan, mac, _, intf = words
+			print(f"{vlan:<9}{mac:20}{intf}")
+
+

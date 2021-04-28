@@ -21,9 +21,9 @@ Restriction: All tasks must be done using the topics covered in this and previou
 
 """
 
-with open('CAM_table.txt', 'r') as f:
-	for line in f:
-		words = line.split()
-		if words and words[0].isdigit():
-			vlan, mac, _, interface = words
-			print(f"{vlan:9}{mac:20}{interface}")
+with open("CAM_table.txt") as conf:
+    for line in conf:
+        words = line.split()
+        if words and words[0].isdigit():
+            vlan, mac, _, interface = words
+            print(f"{vlan:9}{mac:20}{interface}")

@@ -23,15 +23,14 @@ Correct sorting can be achieved if vlan is a number, not a string.
 Restriction: All tasks must be done using the topics covered in this and previous chapters.
 
 """
-
 mac_table = []
 
-with open('CAM_table.txt', 'r') as f:
-	for line in f:
-		words = line.split()
-		if words and words[0].isdigit():
-			vlan, mac, _, intf = words
-			mac_table.append([int(vlan), mac, intf])
+with open("CAM_table.txt", "r") as conf:
+    for line in conf:
+        words = line.split()
+        if words and words[0].isdigit():
+            vlan, mac, _, intf = words
+            mac_table.append([int(vlan), mac, intf])
 
 for vlan, mac, intf in sorted(mac_table):
-	print(f"{vlan:<9}{mac:20}{intf}")
+    print(f"{vlan:<9}{mac:20}{intf}")

@@ -16,17 +16,15 @@ that start with ! must be filtered.
 Restriction: All tasks must be done using the topics covered in this and previous chapters.
 
 """
-
 from sys import argv
 
 ignore = ["duplex", "alias", "configuration"]
-file = argv[1]
-dest = argv[2]
 
-with open(file, 'r') as f, open(dest, 'w') as d:
-	for line in f:
-		words = line.split()
-		words_intersect = set(words) & set(ignore)
-		if not line.startswith("!") and not words_intersect:
-			d.write(line)
+src_file, dst_file = argv[1], argv[2]
 
+with open(src_file) as src, open(dst_file, 'w') as dst:
+    for line in src:
+        words = line.split()
+        words_intersect = set(words) & set(ignore)
+        if not line.startswith("!") and not words_intersect:
+            dst.write(line)
