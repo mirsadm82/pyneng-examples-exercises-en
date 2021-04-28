@@ -43,30 +43,20 @@ Restriction: All tasks must be done using the topics covered in this and previou
 """
 
 access_template = [
-	"switchport mode access",
-	"switchport access vlan",
-	"spanning-tree portfast",
-	"spanning-tree bpduguard enable",
+    "switchport mode access",
+    "switchport access vlan",
+    "spanning-tree portfast",
+    "spanning-tree bpduguard enable",
 ]
 
 trunk_template = [
-	"switchport trunk encapsulation dot1q",
-	"switchport mode trunk",
-	"switchport trunk allowed vlan",
+    "switchport trunk encapsulation dot1q",
+    "switchport mode trunk",
+    "switchport trunk allowed vlan",
 ]
 
 access = {"0/12": "10", "0/14": "11", "0/16": "17", "0/17": "150"}
 trunk = {"0/1": ["add", "10", "20"], "0/2": ["only", "11", "30"], "0/4": ["del", "17"]}
-
-'''
-for intf, vlan in access.items():
-	print("interface FastEthernet " + intf)
-	for command in access_template:
-		if command.endswith("access vlan"):
-			print(f" {command} {vlan}")
-		else:
-			print(f" {command}")
-'''
 
 for intf, value in trunk.items():
     print(f"interface FastEthernet {intf}")
@@ -85,4 +75,30 @@ for intf, value in trunk.items():
             print(f" {command}")
 
 
+# version with dict
+trunk_actions = {"add": " add", "del": " remove", "only": ""}
 
+for intf, value in trunk.items():
+    print(f"interface FastEthernet {intf}")
+
+    for command in trunk_template:
+        if command.endswith("allowed vlan"):
+            action = value[0]
+            vlans = ",".join(value[1:])
+            print(f" {command}{trunk_actions[action]} {vlans}")
+        else:
+            print(f" {command}")
+
+# version with replace
+for intf, allowed in trunk.items():
+    action = (
+        allowed[0].replace("only", "").replace("del", " remove").replace("add", " add")
+    )
+    vlans = ",".join(allowed[1:])
+
+    print(f"interface FastEthernet {intf}")
+    for command in trunk_template:
+        if command.endswith("allowed vlan"):
+            print(f" {command}{action} {vlans}")
+        else:
+            print(f" {command}")
