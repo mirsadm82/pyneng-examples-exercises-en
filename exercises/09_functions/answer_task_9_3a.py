@@ -40,5 +40,3 @@ def get_int_vlan_map(config_filename):
                 del access_port_dict[current_interface]
     return access_port_dict, trunk_port_dict
 
-print(get_int_vlan_map("config_sw2.txt"))
-

@@ -8,9 +8,9 @@ for access ports.
 The function expects arguments:
 
 - a dictionary with interface as a key and VLAN as a value:
-	 {'FastEthernet0/12': 10,
-	  'FastEthernet0/14': 11,
-	  'FastEthernet0/16': 17}
+     {'FastEthernet0/12': 10,
+      'FastEthernet0/14': 11,
+      'FastEthernet0/16': 17}
 - access ports configuration template as a list of commands (access_mode_template list)
 
 The function should return a list of all ports in access mode with configuration
@@ -47,39 +47,37 @@ Restriction: All tasks must be done using the topics covered in this and previou
 """
 
 access_mode_template = [
-	"switchport mode access",
-	"switchport access vlan",
-	"switchport nonegotiate",
-	"spanning-tree portfast",
-	"spanning-tree bpduguard enable",
+    "switchport mode access",
+    "switchport access vlan",
+    "switchport nonegotiate",
+    "spanning-tree portfast",
+    "spanning-tree bpduguard enable",
 ]
 
 access_config = {"FastEthernet0/12": 10, "FastEthernet0/14": 11, "FastEthernet0/16": 17}
 
 access_config_2 = {
-	"FastEthernet0/3": 100,
-	"FastEthernet0/7": 101,
-	"FastEthernet0/9": 107,
+    "FastEthernet0/03": 100,
+    "FastEthernet0/07": 101,
+    "FastEthernet0/09": 107,
 }
 
 
 def generate_access_config(intf_vlan_mapping, access_template):
-	"""
-	intf_vlan_mapping is a dictionary with interface-VLAN mapping:
-		 {'FastEthernet0/12': 10,
-		  'FastEthernet0/14': 11,
-		  'FastEthernet0/16': 17}
-	access_template - list of commands for the port in access mode
-
-	Returns a list of commands.
-	"""
-
-	access_config = []
-	for intf, vlan in intf_vlan_mapping.items():
-		access_config.append(f"interface {intf}")
-		for command in access_template:
-			if command.endswith("access vlan"):
-				access_config.append(f"{command} {vlan}")
-			else:
-				access_config.append(command)
-	return access_config
+    """
+    intf_vlan_mapping is a dictionary with interface-VLAN mapping:
+         {'FastEthernet0/12': 10,
+          'FastEthernet0/14': 11,
+          'FastEthernet0/16': 17}
+    access_template - list of commands for the port in access mode
+    Returns a list of commands.
+    """
+    access_config = []
+    for intf, vlan in intf_vlan_mapping.items():
+        access_config.append(f"interface {intf}")
+        for command in access_template:
+            if command.endswith("access vlan"):
+                access_config.append(f"{command} {vlan}")
+            else:
+                access_config.append(command)
+    return access_config

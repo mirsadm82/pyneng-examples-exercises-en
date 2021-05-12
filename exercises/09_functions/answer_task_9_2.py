@@ -58,6 +58,7 @@ trunk_config_2 = {
     "FastEthernet0/14": [117],
 }
 
+
 def generate_trunk_config(intf_vlan_mapping, trunk_template):
     trunk_conf = []
     for port, vlans in intf_vlan_mapping.items():
