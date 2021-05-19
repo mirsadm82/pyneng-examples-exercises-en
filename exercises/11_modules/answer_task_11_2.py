@@ -37,6 +37,7 @@ infiles = [
     "sh_cdp_n_r3.txt",
 ]
 
+
 def create_network_map(filenames):
     network_map = {}
 
@@ -50,4 +51,3 @@ def create_network_map(filenames):
 if __name__ == "__main__":
     topology = create_network_map(infiles)
     pprint(topology)
-
